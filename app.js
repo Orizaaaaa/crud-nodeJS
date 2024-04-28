@@ -7,6 +7,7 @@ const conn = require('./config/db')
 app.use(express.json())
 app.listen('3000')
 
+// get data mahasiswa
 app.get('/get-mahasiwa', (req, res) => {
     const queryStr = 'SELECT * FROM mahasiswa WHERE deleted_at IS NULL'
     conn.query(queryStr, (err, result) => {
@@ -22,7 +23,7 @@ app.get('/get-mahasiwa', (req, res) => {
     })
 })
 
-
+// membuat data baru mahasiswa
 app.post('/store-mahasiswa', (req, res) => {
     const param = req.body
     const name = param.name
@@ -51,6 +52,7 @@ app.post('/store-mahasiswa', (req, res) => {
 })
 
 
+//ngambil data mahasiswa berdasarkan id
 app.get('/get-mahasiswa-by-id', (req, res) => {
     const param = req.query;
     const id = param.id
@@ -79,7 +81,7 @@ app.get('/get-mahasiswa-by-id', (req, res) => {
 
 })
 
-
+//update data mahasiswa
 app.post('/update-mahasiswa', (req, res) => {
     const param = req.body
     const id = param.id
